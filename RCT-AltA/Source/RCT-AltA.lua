@@ -140,7 +140,7 @@ local function initForm()
         local addSelectbox, addInputbox = form.addSelectbox, form.addInputbox
         
         addRow(1)
-        addLabel({label="---GW based on RC-Thoughts---",font=FONT_NORMAL})
+        addLabel({label="---Geierwally---",font=FONT_NORMAL})
         
         addRow(2)
         addLabel({label=trans11.altSensor, width=220})
@@ -175,7 +175,7 @@ local function initForm()
         shortAnnIndex = addCheckbox(shortAnn, shortAnnClicked)
         
         addRow(1)
-        addLabel({label="Powered by GW based on RC-Thoughts "..altAnnVersion.." ", font=FONT_MINI, alignRight=true})
+        addLabel({label="Powered by Geierwally "..altAnnVersion.." ", font=FONT_MINI, alignRight=true})
         else
         local addRow, addLabel = form.addRow ,form.addLabel
         addRow(1)
@@ -277,4 +277,4 @@ end
 altAnnVersion = "G1.7.1"
 setLanguage()
 collectgarbage()
-return {init=init, loop=loop, author="GW RC-Thoughts", version=altAnnVersion, name=trans11.appName}
+return {init=init, loop=loop, author="Geierwally", version=altAnnVersion, name=trans11.appName}
