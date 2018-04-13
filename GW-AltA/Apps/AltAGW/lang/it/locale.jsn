@@ -1,0 +1,13 @@
+{
+	"altALib":"Altitude Announcer",
+	"config":"configuration",
+    "appName":"Geierwallys Altitude Announcer",
+    "swAudio":"Switch Audio",
+    "swVib":"Switch Vib/Beep",
+	"audioOut":"audio output",
+	"up":"up",
+	"down":"down",
+	"upDown":"up / down",
+    "min":"Min. Altitude",
+    "max":"Max. Altitude"
+}

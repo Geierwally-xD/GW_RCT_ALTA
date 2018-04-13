@@ -1,0 +1,13 @@
+{
+	"altALib":"Höhenansage",
+	"config":"Konfiguration",
+    "appName":"Geierwallys Höhenansage",
+    "swAudio":"Schalter Audio",
+    "swVib":"Schalter Vib/Beep",
+	"audioOut":"Audioausgabe",
+	"up":"Steigen",
+	"down":"Sinken",
+	"upDown":"Steigen/Sinken",
+    "min":"Min. Höhe",
+    "max":"Max. Höhe"
+}
