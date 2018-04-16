@@ -12,6 +12,7 @@
 	---------------------------------------------------------
 	V1.7.2  overworked storage managemet 
 			optional systemBeep or vibration output for increasing altitude
+	V1.7.3  additional offset for vibration / system beep set zero on activation beep / vibration switch		
 	---------------------------------------------------------
 --]]
 
@@ -49,11 +50,12 @@ local function init(code,globVar_)
 	globVar.audioSwitch = system.pLoad("audioSwitch")
 	globVar.minAlt = system.pLoad("minAlt",0)
 	globVar.maxAlt = system.pLoad("maxAlt",100)
-	globVar.offset = system.pLoad("offset",5)
+	globVar.offset = system.pLoad("offset",10)
+	globVar.beepOffset = system.pLoad("beepOffset",5)
 	
-    ----only for simulation without connected telemetry
-	--globVar.simAlta = system.pLoad("simAlta")
-    ----only for simulation without connected telemetry
+    -- --only for simulation without connected telemetry
+	-- globVar.simAlta = system.pLoad("simAlta")
+    -- --only for simulation without connected telemetry
 	globVar.initDone = true
 end
 

@@ -12,6 +12,7 @@
 	---------------------------------------------------------
 	V1.7.2  overworked storage managemet 
 			optional systemBeep or vibration output for increasing altitude
+	V1.7.3  additional offset for vibration / system beep set zero on activation beep / vibration switch		
 	---------------------------------------------------------
 --]]
 --Configuration
@@ -20,8 +21,8 @@ local appLoaded = false
 local main_lib = nil  -- lua main script
 local initDelay = 0
 local globVar ={--                          main version | version of screenlib | version of the app (or template) 
-				simAlta = nil, --			only for simulation without connected telemetry
-				version = "V1.7.2", --      version of the app 1.             1.                     1
+				--simAlta = nil, --			only for simulation without connected telemetry
+				version = "V1.7.3", --      version of the app 1.             1.                     1
 				mem = 0,--                  maximum of used storage
 				debugmem = 0,--             used storage
 				trans = {},--               translations depending on set language
@@ -33,7 +34,8 @@ local globVar ={--                          main version | version of screenlib 
 				audioListIdx = 1, -- 		audio output off , up , down , up/down 
 				minAlt = 0, -- 				begin of output
 				maxAlt = 0, -- 				end of output
-				offset = 0, -- 				offset output
+				offset = 0, -- 				audio offset output
+				beepOffset = 0, -- 			beep or vibration offset output
 				audioSwitch = nil, -- 		switch for audio output
 				vibBeepSwitch = nil, -- 	switch for vibration or system beep output
 				sensID = 0,

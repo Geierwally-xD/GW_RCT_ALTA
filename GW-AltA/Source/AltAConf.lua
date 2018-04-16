@@ -7,6 +7,7 @@
 	---------------------------------------------------------
 	V1.7.2  overworked storage managemet 
 			optional systemBeep or vibration output for increasing altitude
+	V1.7.3  additional offset for vibration / system beep set zero on activation beep / vibration switch		
 	---------------------------------------------------------
 --]]
 local globVar =  nil   --    global variables for application and config
@@ -25,12 +26,12 @@ end
 -------------------------------------------------------------------- 
 -- AltA - lib configuration
 -------------------------------------------------------------------- 
-----only for simulation without connected telemetry
+-- --only for simulation without connected telemetry
 -- local function simAltaChanged(value)
 	-- globVar.simAlta = value
 	-- system.pSave("simAlta",globVar.simAlta)
 -- end
-----only for simulation without connected telemetry
+-- --only for simulation without connected telemetry
 
 local function sensorChanged(value)
 	sensListIdx = value
@@ -94,6 +95,11 @@ local function offsetChanged(value)
 	system.pSave("offset", globVar.offset)
 end
 
+local function beepOffsetChanged(value)
+	globVar.beepOffset = value
+	system.pSave("beepOffset", globVar.beepOffset)
+end
+
 --------------------------------------------------------------------------------
 -- Config display
 local function AltAConfig(formID)
@@ -129,11 +135,11 @@ local function AltAConfig(formID)
 	form.addRow(1)
 	form.addLabel({label=globVar.trans.config,font=FONT_BOLD})
 	
-----only for simulation without connected telemetry	
-	--form.addRow(2)
-	--form.addLabel({label="sensorSimulation"})
-	--form.addInputbox(globVar.simAlta,true,simAltaChanged)
-----only for simulation without connected telemetry	
+-- --only for simulation without connected telemetry	
+	-- form.addRow(2)
+	-- form.addLabel({label="sensorSimulation"})
+	-- form.addInputbox(globVar.simAlta,true,simAltaChanged)
+-- --only for simulation without connected telemetry	
 	
 	if( sensPaList[1] ~=nil) then
 		form.addRow(2)
@@ -168,11 +174,19 @@ local function AltAConfig(formID)
 		
 	if(globVar.vibBeepIdx >1) then
 		form.addRow(2)
+		form.addLabel({label="Beep Offset ("..sensor.unit..")", width=220})
+		form.addIntbox(globVar.beepOffset, 1, 100, 0, 0, 1, beepOffsetChanged)
+
+		form.addRow(2)
 		form.addLabel({label=globVar.trans.swVib})
 		form.addInputbox(globVar.vibBeepSwitch,true,vibSwitchChanged)
 	end	
 		
 	if(globVar.audioListIdx >1) then
+		form.addRow(2)
+		form.addLabel({label="Audio Offset ("..sensor.unit..")", width=220})
+		form.addIntbox(globVar.offset, 1, 100, 0, 0, 1, offsetChanged)
+
 		form.addRow(2)
 		form.addLabel({label=globVar.trans.swAudio})
 		form.addInputbox(globVar.audioSwitch,true,audioSwitchChanged)
@@ -185,10 +199,6 @@ local function AltAConfig(formID)
     form.addRow(2)
     form.addLabel({label=globVar.trans.max.." ("..sensor.unit..")", width=220})
     form.addIntbox(globVar.maxAlt, -0, 10000, 0, 0, 10, maxChanged)
-        
-    form.addRow(2)
-    form.addLabel({label="Offset ("..sensor.unit..")", width=220})
-    form.addIntbox(globVar.offset, -0, 100, 0, 0, 1, offsetChanged)
 	
 	-- version
 	form.addRow(1)
